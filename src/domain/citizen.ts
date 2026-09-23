@@ -28,6 +28,7 @@ export const SORT_KEYS: readonly SortKey[] = [
   'lastContactAt',
 ];
 
+/** Облегчённая проекция для списка: остальные ~70 полей грузятся только при открытии карточки. */
 export interface CitizenListItem {
   id: number;
   lastName: string;
@@ -68,7 +69,9 @@ export interface CitizensQuery extends CitizensFilter {
 
 export interface CitizensPage {
   items: CitizenListItem[];
+  /** Количество записей, подходящих под фильтры. */
   total: number;
+  /** Количество записей в картотеке без учёта фильтров. */
   totalAll: number;
   nextOffset: number | null;
 }

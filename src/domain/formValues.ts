@@ -7,7 +7,7 @@ function sameValue(a: FieldValue | undefined, b: FieldValue | undefined): boolea
   return a === b;
 }
 
-
+/** Имена полей, значения которых различаются. */
 export function diffValues(a: FormValues, b: FormValues): string[] {
   const names = new Set([...Object.keys(a), ...Object.keys(b)]);
   return [...names].filter((name) => !sameValue(a[name], b[name]));

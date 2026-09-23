@@ -15,6 +15,25 @@
   </head>
   <body>
     <div id="root"></div>
+    <!--
+      Вторая половина трюка из public/404.html: если GitHub Pages перекинул сюда
+      запрос по несуществующему пути, восстанавливаем исходный адрес до того,
+      как React Router прочитает location.
+    -->
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var path = params.get('p');
+        if (!path) return;
+        var query = params.get('q');
+        var restored =
+          window.location.pathname.replace(/\/$/, '') +
+          path.replace(/~and~/g, '&') +
+          (query ? '?' + query.replace(/~and~/g, '&') : '') +
+          window.location.hash;
+        window.history.replaceState(null, '', restored);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

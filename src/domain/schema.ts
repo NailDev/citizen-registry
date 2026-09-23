@@ -34,8 +34,10 @@ interface FieldBase {
   required?: boolean;
   requiredMessage?: string;
   hint?: string;
+  /** Сколько колонок сетки занимает поле. */
   span?: 1 | 2 | 3;
   defaultValue?: FieldValue;
+  /** Поле скрывается (и не валидируется), пока функция возвращает false. */
   visibleIf?: (values: FormValues) => boolean;
 }
 
