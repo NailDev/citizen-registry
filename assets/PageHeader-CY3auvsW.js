@@ -1,0 +1,1 @@
+import{j as e}from"./index-DDZI6kgr.js";function h({title:a,description:r,actions:s}){return e.jsxs("header",{className:"page-header",children:[e.jsxs("div",{children:[e.jsx("h1",{children:a}),r&&e.jsx("p",{children:r})]}),s&&e.jsx("div",{className:"page-header__actions",children:s})]})}export{h as P};

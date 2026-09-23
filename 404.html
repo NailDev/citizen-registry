@@ -1,0 +1,32 @@
+<!doctype html>
+<!--
+  GitHub Pages отдаёт этот файл на любой путь, которого нет физически на сервере
+  (например /citizen-registry/registry/42 при прямом заходе или обновлении страницы).
+  Скрипт переписывает адрес в query-параметр и отправляет на index.html, а тот
+  восстанавливает путь до того, как React Router успеет отрисовать что-либо.
+  Приём описан здесь: https://github.com/rafgraph/spa-github-pages
+-->
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Картотека граждан</title>
+    <script>
+      var segmentsToKeep = 1; // /citizen-registry/ — первый сегмент пути, его не трогаем
+      var location = window.location;
+      var pathParts = location.pathname.split('/').slice(1);
+      var redirect =
+        location.protocol +
+        '//' +
+        location.hostname +
+        (location.port ? ':' + location.port : '') +
+        '/' +
+        pathParts.slice(0, segmentsToKeep).join('/') +
+        '/?p=/' +
+        pathParts.slice(segmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (location.search ? '&q=' + location.search.slice(1).replace(/&/g, '~and~') : '') +
+        location.hash;
+      window.location.replace(redirect);
+    </script>
+  </head>
+  <body></body>
+</html>
